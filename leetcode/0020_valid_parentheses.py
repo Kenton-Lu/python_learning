@@ -34,17 +34,14 @@ class Solution:
             "{": "}"
         }
         stack = []
-
         for n in s:
-            print ('-',n)
  
             if stack and stack[-1] in dict and dict[stack[-1]] == n:
-                print(stack[-1])
+
                 stack.pop()
             else:
                 stack.append(n)
 
-        print(stack)
         return not stack
 
 # Test
