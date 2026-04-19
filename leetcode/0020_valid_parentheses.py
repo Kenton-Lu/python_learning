@@ -35,9 +35,9 @@ class Solution:
         }
         stack = []
         for n in s:
- 
+            print(n)
             if stack and stack[-1] in dict and dict[stack[-1]] == n:
-
+                print('--')
                 stack.pop()
             else:
                 stack.append(n)
