@@ -62,7 +62,7 @@ class Solution:
             print('right',right,dq)
 
         return res
-
+    
 
 # 測試用
 nums = [1,3,-1,-3,5,3,6,7]
