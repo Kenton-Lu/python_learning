@@ -43,13 +43,14 @@ class Solution:
 
             # 1. 移除已經不在 window 裡的 index
             if dq and dq[0] <= right - k:
-                print('1111111111')
+                print('1111111111',dq)
                 dq.popleft()
+
 
             # 2. 維持 deque 對應的值是由大到小
             # 如果新進來的 nums[right] 比尾巴大，尾巴就沒用了
             while dq and nums[dq[-1]] < nums[right]:
-                print('2222222222')
+                print('2222222222',dq)
                 dq.pop()
 
             # 3. 把目前 index 放進 deque
@@ -57,7 +58,7 @@ class Solution:
 
             # 4. 當 window 長度達到 k，開始記錄答案
             if right >= k - 1:
-                print('444444444')
+                print('444444444',dq)
                 res.append(nums[dq[0]])
             print('right',right,dq)
 
