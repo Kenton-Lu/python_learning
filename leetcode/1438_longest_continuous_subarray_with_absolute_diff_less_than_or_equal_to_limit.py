@@ -38,39 +38,37 @@ from collections import deque
 
 class Solution:
     def longestSubarray(self, nums, limit):
-        max_dq = deque()
-        min_dq = deque()
-
-        left = 0
+        demax = deque()
+        demin = deque()
         ans = 0
+        left = 0
 
         for right in range(len(nums)):
+            while demax and nums[demax[-1]] < nums[right]:
+                print('maa',demax[-1],nums[right])
+                demax.pop()
+            demax.append(right)
+            print('max',demax)
 
-            # 維持 max deque（遞減）
-            while max_dq and nums[max_dq[-1]] < nums[right]:
-                max_dq.pop()
-            max_dq.append(right)
-
-            # 維持 min deque（遞增）
-            while min_dq and nums[min_dq[-1]] > nums[right]:
-                min_dq.pop()
-            min_dq.append(right)
-
-            # 檢查是否合法
-            while nums[max_dq[0]] - nums[min_dq[0]] > limit:
-
-                if max_dq[0] == left:
-                    max_dq.popleft()
-
-                if min_dq[0] == left:
-                    min_dq.popleft()
-
+            while demin and nums[demin[-1]] > nums[right]:
+                demin.pop()
+            demin.append(right)
+            print('min',demin)
+            print(nums[demax[0]] ,'--', nums[demin[0]])
+            print(demax[0],'---',demin[0])
+            while nums[demax[0]] - nums[demin[0]] > limit:
+                print(demax[0],demin[0])
+                if demax[0] == left:
+                    demax.popleft()
+                if demin[0] == left:
+                    demin.popleft()
                 left += 1
-
             ans = max(ans, right - left + 1)
+
             print(right,ans)
 
         return ans
+
 
 nums = [8,2,4,7]
 limit = 4

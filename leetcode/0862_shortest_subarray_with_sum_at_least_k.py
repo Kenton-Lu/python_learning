@@ -34,31 +34,25 @@ from collections import deque
 class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
         n = len(nums)
-
+        dq = deque()
+        left = 0
+        ans = float('inf')
         prefix = [0] * (n + 1)
         for i in range(n):
-            prefix[i + 1] = prefix[i] + nums[i]
-
-        dq = deque()
-        ans = float("inf")
+            prefix [i + 1] = prefix[i] + nums[i]
+        print (prefix)
 
         for right in range(n + 1):
             while dq and prefix[right] - prefix[dq[0]] >= k:
-                length = right - dq[0]
-                sub_sum = prefix[right] - prefix[dq[0]]
+                l = right - dq[0]
+                ans = min(ans, l)
+                dq.popleft()
 
-                ans = min(ans, length)
-                removed = dq.popleft()
-
-            while dq and prefix[right] <= prefix[dq[-1]]:
-                removed = dq.pop()
-
+            while dq and prefix[right] < prefix[dq[-1]]:
+                dq.pop()
 
             dq.append(right)
-
-        return ans if ans != float("inf") else -1
-
-
+        return ans if ans != float('inf') else -1
 # 測試用
 nums = [1, -1, 5]
 k = 3
