@@ -45,19 +45,17 @@ class Solution:
 
         for right in range(len(nums)):
             while demax and nums[demax[-1]] < nums[right]:
-                print('maa',demax[-1],nums[right])
+
                 demax.pop()
             demax.append(right)
-            print('max',demax)
+
 
             while demin and nums[demin[-1]] > nums[right]:
                 demin.pop()
             demin.append(right)
-            print('min',demin)
-            print(nums[demax[0]] ,'--', nums[demin[0]])
-            print(demax[0],'---',demin[0])
+
             while nums[demax[0]] - nums[demin[0]] > limit:
-                print(demax[0],demin[0])
+  
                 if demax[0] == left:
                     demax.popleft()
                 if demin[0] == left:
@@ -65,7 +63,6 @@ class Solution:
                 left += 1
             ans = max(ans, right - left + 1)
 
-            print(right,ans)
 
         return ans
 
